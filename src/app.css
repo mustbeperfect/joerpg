@@ -3,42 +3,50 @@
 
 @import "tailwindcss";
 
-.iconhybrid {
-    @apply aspect-square border-gray-700 border bg-gray-900 text-xl rounded-lg size-10 flex justify-center items-center cursor-pointer transition duration-500 text-gray-400 ease-in-out hover:bg-white hover:text-black hover:border-white;
+.flex-x {
+    @apply flex flex-row;
 }
 
-.buttonhybrid {
-    @apply border-gray-700 border bg-gray-900 text-sm rounded-lg px-6 h-10 font-mono text-gray-400 cursor-pointer transition duration-500 ease-in-out hover:bg-white hover:text-black hover:border-white;
+.flex-y {
+    @apply flex flex-col;
 }
 
-.iconhybriddual {
-    @apply  border-gray-700 border bg-gray-900 text-xl rounded-lg gap-4 h-12 px-4 flex items-center cursor-pointer transition duration-500 text-gray-300 ease-in-out hover:bg-white hover:text-black hover:border-white;
+.hybrid {
+    @apply border border-gray-700 bg-gray-900;
 }
 
-.iconhybriddualedge {
-    @apply  border-gray-700 border bg-gray-900 text-xl gap-4 h-12 px-4 flex items-center cursor-pointer transition duration-500 text-gray-300 ease-in-out hover:bg-white hover:text-black hover:border-white;
-}
-
-.iconhybridsecond {
-    @apply aspect-square border-gray-700 border bg-gray-900 text-xl size-12 flex justify-center items-center cursor-pointer transition duration-500 text-gray-400 ease-in-out hover:bg-white hover:text-black hover:border-white;
+.tag {
+    @apply text-center text-xs font-semibold font-mono text-xl gap-4 h-10 px-6 flex items-center cursor-pointer text-gray-300 transition duration-500 ease-in-out hover:bg-white hover:text-black hover:border-white;
 }
 
 .icon {
     @apply aspect-square text-gray-500 text-xl size-14 flex justify-center items-center cursor-pointer transition duration-500 hover:text-white;
 }
 
-.regularlabel {
-    @apply px-6 py-4 border border-gray-800 text-gray-500 text-sm;
+.label {
+    @apply border border-gray-800 text-gray-500 px-6 py-4 text-sm;
 }
 
-.statlabel {
+.stat-label {
     @apply border-gray-700 border bg-gray-900 flex flex-col items-center text-gray-200 w-full;
 }
 
-.tag {
-    @apply text-center text-xs font-semibold font-mono border-gray-700 border bg-gray-900 text-xl gap-4 h-10 px-6 flex items-center cursor-pointer transition duration-500 text-gray-300 ease-in-out hover:bg-white hover:text-black hover:border-white;
+.icon-hybrid-rounded {
+    @apply aspect-square border-gray-700 border bg-gray-900 text-xl rounded-lg size-10 flex justify-center items-center cursor-pointer transition duration-500 text-gray-400 ease-in-out hover:bg-white hover:text-black hover:border-white;
 }
 
-.tagactive {
-    @apply text-center text-xs font-semibold font-mono hover:border-gray-700 border hover:bg-gray-900 text-xl gap-4 h-10 px-6 flex items-center cursor-pointer transition duration-500 hover:text-gray-300 ease-in-out bg-white text-black border-white;
+.button-hybrid {
+    @apply  border-gray-700 border bg-gray-900 text-xs gap-4 h-12 px-4 flex items-center cursor-pointer transition duration-500 text-gray-300 ease-in-out hover:bg-white hover:text-black hover:border-white;
+}
+
+.button-hybrid-rounded {
+    @apply border-gray-700 border bg-gray-900 text-sm rounded-lg px-6 h-10 font-mono text-gray-400 cursor-pointer transition duration-500 ease-in-out hover:bg-white hover:text-black hover:border-white;
+}
+
+.button-hybrid-dual {
+    @apply  border-gray-700 border bg-gray-900 text-xl gap-4 h-12 px-4 flex items-center cursor-pointer transition duration-500 text-gray-300 ease-in-out hover:bg-white hover:text-black hover:border-white;
+}
+
+.icon-hybrid {
+    @apply aspect-square border-gray-700 border bg-gray-900 text-xl size-12 flex justify-center items-center cursor-pointer transition duration-500 text-gray-400 ease-in-out hover:bg-white hover:text-black hover:border-white;
 }
