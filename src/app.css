@@ -20,7 +20,11 @@
 }
 
 .tag {
-    @apply text-center text-xs font-semibold font-mono gap-4 h-10 px-6 flex items-center cursor-pointer text-gray-300 transition duration-500 ease-in-out hover:bg-white hover:text-black hover:border-white;
+    @apply border border-gray-700 bg-gray-900 text-center text-xs font-semibold font-mono gap-4 h-10 px-6 flex items-center cursor-pointer text-gray-300 transition duration-500 ease-in-out hover:bg-white hover:text-black hover:border-white;
+}
+
+.tag-toggled {
+    @apply text-center text-xs font-semibold font-mono gap-4 h-10 px-6 flex items-center cursor-pointer transition duration-500 ease-in-out border bg-white text-black border-white;
 }
 
 .icon {
