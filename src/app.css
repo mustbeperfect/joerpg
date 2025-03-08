@@ -3,14 +3,6 @@
 
 @import "tailwindcss";
 
-.flex-x {
-    @apply flex flex-row;
-}
-
-.flex-y {
-    @apply flex flex-col;
-}
-
 .hybrid {
     @apply border border-gray-700 bg-gray-900;
 }

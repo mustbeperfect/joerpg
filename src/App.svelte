@@ -291,12 +291,12 @@
 </script>
 
 <main class="bg-black h-screen box-border">
-    <nav class="flex-x justify-between items-center px-8 h-16">
-        <div class="flex-x gap-8 items-center h-full">
+    <nav class="flex flex-row justify-between items-center px-8 h-16">
+        <div class="flex flex-row gap-8 items-center h-full">
             <div class="text-lg font-semibold text-gray-300">Joerpg</div>
             <div class="w-px h-full bg-gray-800"></div>
             <div class="flex gap-4">
-                <div class="flex-x gap-4">
+                <div class="flex flex-row gap-4">
                     <button class="button-hybrid-rounded" aria-label="joe">Character 1</button>
                 </div>
                 <button class="icon-hybrid-rounded" aria-label="Youtube">
@@ -309,9 +309,9 @@
         <div class="text-sm font-semibold text-gray-500">v0.1.0-alpha</div>
     </nav>
     <div class="h-px w-full bg-gray-800"></div>
-    <div class="flex-x h-[calc(100vh-65px)]">
+    <div class="flex flex-row h-[calc(100vh-65px)]">
         <div class="w-full p-6 flex gap-6 font-mono">
-            <div class="w-full flex-y gap-4">
+            <div class="min-w-sm flex flex-col gap-4">
                 <div class="label-fixed justify-between">
                     <div class="">{npc.name}</div>
                     <div class="">{npc.age} yrs</div>
@@ -322,44 +322,44 @@
                     <div class="label-fixed w-full">{npc.sex}</div>
                 </div>
                 <div class="flex gap-4">
-                    <div class="flex-y stat-label">
+                    <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.strength}</div>
                         <div class="h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Strength</div>
                     </div>
-                    <div class="flex-yl stat-label">
+                    <div class="flex flex-coll stat-label">
                         <div class="text-lg py-4 ">{npc.stamina}</div>
                         <div class="h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Stamina</div>
                     </div>
-                    <div class="flex-y stat-label">
+                    <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.dexterity}</div>
                         <div class="h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Dexterity</div>
                     </div>
-                    <div class="flex-y stat-label">
+                    <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.response}</div>
                         <div class="h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Response</div>
                     </div>
                 </div>
                 <div class="flex gap-4">
-                    <div class="flex-y stat-label">
+                    <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.intuition}</div>
                         <div class="h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Intuition</div>
                     </div>
-                    <div class="flex-y stat-label">
+                    <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.logic}</div>
                         <div class="h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Logic</div>
                     </div>
-                    <div class="flex-y stat-label">
+                    <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.personality}</div>
                         <div class="h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Personality</div>
                     </div>
-                    <div class="flex-y stat-label">
+                    <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.leadership}</div>
                         <div class="h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Leadership</div>
@@ -402,15 +402,15 @@
                         <div class="text-[10px] text-gray-300 px-4 w-full text-center p-2">{npc.credits}</div>
                     </div>
                 </div>
-                <div class="label flex-y gap-2 h-full">
-                    <div class="flex-x justify-between">
+                <div class="label flex flex-col gap-2 h-full">
+                    <div class="flex flex-row justify-between">
                         <div class="">Skills</div>
                         <div class="">Lvl</div>
                     </div>
                     <div class="h-px bg-gray-800"></div>
-                    <div class="overflow-y-auto flex-y gap-2 h-full">
+                    <div class="overflow-y-auto flex flex-col gap-2 h-full">
                         {#each npc.skills as skill, i}
-                            <div class="w-full flex-x justify-between">
+                            <div class="w-full flex flex-row justify-between">
                                 <div>{skill}</div>
                                 <div>{npc.skillLevel[i]}</div>
                             </div>
@@ -418,30 +418,52 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full flex-y gap-4">
-                <div class="label overflow-y-auto h-full" id="description">{npc.description}</div>
-                <div class="label flex-y gap-2">
+            <div class="w-full flex flex-col gap-4">
+                <div class="label overflow-y-auto h-[40%] xl:h-full" id="description">{npc.description}</div>
+                <div class="label xl:hidden flex flex-col gap-2 h-[calc(30%-1rem)]">
                     <div class="">Inventory (Equipment)</div>
-                    <div class="h-px bg-gray-800"></div>
-                    <div class="overflow-y-auto flex-y gap-2 h-32">
+                    <div class="min-h-px bg-gray-800"></div>
+                    <div class="overflow-y-auto flex flex-col gap-2">
                         {#each npc.inventory as item}
                             <div>{item}</div>
                         {/each}
                     </div>
                 </div>
-                <div class="label flex-y gap-2">
+                <div class="label xl:hidden flex flex-col gap-2 h-[calc(30%-1rem)]">
                     <div class="">Weapons</div>
-                    <div class="h-px bg-gray-800"></div>
-                    <div class="overflow-y-auto flex-y gap-2 h-32">
+                    <div class="min-h-px bg-gray-800"></div>
+                    <div class="overflow-y-auto flex flex-col gap-2">
                         {#each npc.weapons as item}
                             <div>{item}</div>
                         {/each}
                     </div>
                 </div>
             </div>
+
+            <div class="xl:flex xl:flex-col gap-4 hidden w-full">
+                <div class="label flex flex-col gap-2 h-[calc(50%-0.5rem)]">
+                    <div class="">Inventory (Equipment)</div>
+                    <div class="min-h-px bg-gray-800"></div>
+                    <div class="overflow-y-auto flex flex-col gap-2">
+                        {#each npc.inventory as item}
+                            <div>{item}</div>
+                        {/each}
+                    </div>
+                </div>
+                <div class="label flex flex-col gap-2 h-[calc(50%-0.5rem)]">
+                    <div class="">Weapons</div>
+                    <div class="min-h-px bg-gray-800"></div>
+                    <div class="overflow-y-auto flex flex-col gap-2">
+                        {#each npc.weapons as item}
+                            <div>{item}</div>
+                        {/each}
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="w-px bg-gray-800"></div>
-        <div class="flex-y justify-between w-lg">
+        <div class="flex flex-col justify-between min-w-[350px] max-w-[350px]">
             <div class="flex justify-evenly">
                 <button class="icon" aria-label="Youtube">
                     <i class="bi bi-arrow-clockwise"></i>
@@ -464,7 +486,7 @@
                 </button>
             </div>
             <div class="h-px w-full bg-gray-800"></div>
-            <div class="flex-y gap-4 m-4">
+            <div class="flex flex-col gap-4 m-4">
                 <div class="flex gap-4">
                     <button on:click={modelDropdown}  class="button-hybrid w-full rounded-none text-center font-semibold font-mono flex justify-center">{currentModel}</button>
 
@@ -474,7 +496,7 @@
                 </div>
 
                 {#if showModelDropdown}
-                    <div class="hybrid flex-y">
+                    <div class="hybrid flex flex-col">
                         {#each modelNames as names}
                             <button on:click={() => selectModel(names)} class="tag">{names}</button>
                         {/each}
@@ -483,7 +505,7 @@
             </div>
 
             <div class="h-px w-full bg-gray-800"></div>
-            <div class="h-full flex flex-y m-4 gap-5 overflow-y-auto">
+            <div class="h-full flex flex flex-col m-4 gap-5 overflow-y-auto">
                 <div class="flex gap-3 flex-wrap">
                     <button class={difficulty === 1 ? 'tag-toggled' : 'tag'}
                             on:click={() => setDifficulty(1)}>Easy
@@ -520,20 +542,20 @@
                 </div>
                 <input type="text" id="first_name" class="label font-mono placeholder-gray-500 focus:outline-none" placeholder="Custom Description Prompt" bind:value={customDescription}>
 
-                <div class="flex-y gap-4">
-                    <div class="flex-x gap-3 font-mono">
+                <div class="flex flex-col gap-4">
+                    <div class="flex flex-row gap-3 font-mono">
                         <div class="hybrid text-gray-300 h-10 text-xs w-[65%] flex items-center px-4">Equipment Amount</div>
                         <input type="text" id="first_name" class="input placeholder-gray-500 text-center w-[35%] focus:outline-none" placeholder="#" bind:value={numInventory}>
                     </div>
-                    <div class="flex-x gap-3 font-mono">
+                    <div class="flex flex-row gap-3 font-mono">
                         <div class="hybrid text-gray-300 h-10 text-xs w-[65%] flex items-center px-4">Number of Skills</div>
                         <input type="text" id="first_name" class="input placeholder-gray-500 text-center w-[35%] focus:outline-none" placeholder="#" bind:value={numSkills}>
                     </div>
-                    <div class="flex-x gap-3 font-mono">
+                    <div class="flex flex-row gap-3 font-mono">
                         <div class="hybrid text-gray-300 h-10 text-xs w-[65%] flex items-center px-4">Weapons Amount</div>
                         <input type="text" id="first_name" class="input placeholder-gray-500 text-center w-[35%] focus:outline-none" placeholder="#" bind:value={numWeapons}>
                     </div>
-                    <div class="flex-x gap-3 font-mono">
+                    <div class="flex flex-row gap-3 font-mono">
                         <div class="hybrid text-gray-300 h-10 text-xs w-[65%] flex items-center px-4">Description Word Count</div>
                         <input type="text" id="first_name" class="input placeholder-gray-500 text-center w-[35%] focus:outline-none" placeholder="#" bind:value={descriptionLength}>
                     </div>
