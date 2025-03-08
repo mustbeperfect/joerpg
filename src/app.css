@@ -12,11 +12,11 @@
 }
 
 .tag {
-    @apply border border-gray-700 bg-gray-900 text-center text-xs font-semibold font-mono gap-4 h-10 px-6 flex items-center cursor-pointer text-gray-300 transition duration-500 ease-in-out hover:bg-white hover:text-black hover:border-white;
+    @apply border border-gray-700 bg-gray-900 text-center text-xs font-mono gap-4 h-10 px-6 flex items-center cursor-pointer text-gray-300 transition duration-500 ease-in-out hover:bg-white hover:text-black hover:border-white;
 }
 
 .tag-toggled {
-    @apply text-center text-xs font-semibold font-mono gap-4 h-10 px-6 flex items-center cursor-pointer transition duration-500 ease-in-out border bg-white text-black border-white;
+    @apply text-center text-xs font-mono gap-4 h-10 px-6 flex items-center cursor-pointer transition duration-500 ease-in-out border bg-white text-black border-white;
 }
 
 .icon {
@@ -29,6 +29,10 @@
 
 .label-fixed {
     @apply border border-gray-800 text-gray-500 px-6 min-h-14 flex items-center text-sm;
+}
+
+.setting-label {
+    @apply border border-gray-700 bg-gray-900 text-gray-400 h-10 text-xs w-[65%] flex items-center px-4;
 }
 
 .input {
@@ -51,12 +55,20 @@
     @apply border-gray-700 border bg-gray-900 text-sm rounded-lg px-6 h-10 font-mono text-gray-400 cursor-pointer transition duration-500 ease-in-out hover:bg-white hover:text-black hover:border-white;
 }
 
-.button-hybrid-dual {
-    @apply  border-gray-700 border bg-gray-900 text-xl gap-4 h-12 px-4 flex items-center cursor-pointer transition duration-500 text-gray-300 ease-in-out hover:bg-white hover:text-black hover:border-white;
+.generate-button {
+    @apply  border-gray-700 border rounded-xl bg-gray-900 text-sm gap-4 ps-6 pe-2 py-2 flex items-center text-center font-semibold font-mono tracking-wider m-4 justify-between text-gray-300 cursor-pointer transition duration-500  ease-in-out hover:bg-white hover:text-black hover:border-white;
+}
+
+.generate-button-icon {
+    @apply size-10 rounded-xl border border-gray-600 aspect-square bg-black flex justify-center items-center text-base;
 }
 
 .icon-hybrid {
-    @apply aspect-square border-gray-700 border bg-gray-900 text-xl size-12 flex justify-center items-center cursor-pointer transition duration-500 text-gray-400 ease-in-out hover:bg-white hover:text-black hover:border-white;
+    @apply aspect-square border-gray-700 border bg-gray-900 text-lg size-12 flex justify-center items-center cursor-pointer transition duration-500 text-gray-400 ease-in-out hover:bg-white hover:text-black hover:border-white;
+}
+
+.dropdown-element {
+    @apply text-left text-xs font-mono cursor-pointer text-gray-300 transition duration-500 ease-in-out  hover:text-gray-500 ;
 }
 
 

@@ -112,11 +112,37 @@
     }
 
     function resetParameters() {
-
+        difficulty = 10;
+        numInventory = 3;
+        numSkills = 3;
+        numWeapons = 3;
+        descriptionLength = 100;
+        customDescription = "";
+        randomRace = true;
+        customRace = "";
     }
 
     function randomParameters() {
-
+        let difficultyQueue = randomNum(1,6)
+        if (difficultyQueue == 6) {
+            difficulty = 10;
+        }
+        else {
+            difficulty = difficultyQueue;
+        }
+        numInventory = randomNum(1,20);
+        numSkills = randomNum(1,20);
+        numWeapons = randomNum(1,20);
+        descriptionLength = randomNum(1,1000);
+        let raceQueue = randomNum(0,raceTypes.length);
+        if (raceQueue == raceTypes.length) {
+            randomRace = true;
+            customRace = "";
+        }
+        else {
+            customRace = raceTypes[raceQueue];
+            randomRace = false;
+        }
     }
 
     //Generator
@@ -191,9 +217,9 @@
         npc.credits =randomNum(100,100000);
 
         let namePrompt = "Generate a sci-fi first and last name for a " + npc.sex + "individual. Include nothing more. DO NOT SAY YOU ARE GENERATING A NAME. THE ONLY TEXT SHOULD BE A NAME.";
-        let lootPrompt = "Act as a scifi equipment generator. Generate the name of a piece equipment that could be in someone's inventory such as a welder. Include nothing more. KEEP YOUR RESPONSE UNDER FOUR WORDS.";
-        let skillPrompt = "Act as a skill generator for an NPC. Generate a skill and include nothing more. KEEP YOUR RESPONSE UNDER TWO WORDS.";
-        let weaponPrompt = "Act as a scifi weapon generator. Generate the name of a weapon that could be in someone's inventory such as a Laser Rifle. Include nothing more. KEEP YOUR RESPONSE UNDER FOUR WORDS.";
+        let lootPrompt = "Act as a scifi equipment generator. Generate the name of a piece equipment that could be in someone's inventory such as a welder. Include nothing more. DO NOT PUT A PERIOD AT THE END. KEEP YOUR RESPONSE UNDER FOUR WORDS.";
+        let skillPrompt = "Act as a skill generator for an NPC. Generate a skill and include nothing more. DO NOT PUT A PERIOD AT THE END. KEEP YOUR RESPONSE UNDER TWO WORDS.";
+        let weaponPrompt = "Act as a scifi weapon generator. Generate the name of a weapon that could be in someone's inventory such as a Laser Rifle. Include nothing more. DO NOT PUT A PERIOD AT THE END. KEEP YOUR RESPONSE UNDER FOUR WORDS.";
 
         //Ollama
         try {
@@ -243,7 +269,7 @@
               console.error("Error fetching response:", error);
           }
             usedInventory += npc.inventory[i] + "";
-            lootPrompt = "Act as a scifi equipment generator. Generate the name of a piece equipment that could be in someone's inventory such as a welder. Include nothing more. You cannot use the following equipment: " + usedInventory + ". KEEP YOUR RESPONSE UNDER FOUR WORDS.";
+            lootPrompt = "Act as a scifi equipment generator. Generate the name of a piece equipment that could be in someone's inventory such as a welder. Include nothing more. You cannot use the following equipment: " + usedInventory + ".DO NOT PUT A PERIOD AT THE END. KEEP YOUR RESPONSE UNDER FOUR WORDS.";
             /*
               for (let j = 0; j < npc.inventory.length; j++) {
                   usedInventory += npc.inventory[j];
@@ -265,7 +291,7 @@
           }
             usedSkills += npc.skills[i] + "";
             npc.skillLevel = [...npc.skillLevel,randomNum(1,6)];
-            skillPrompt = "Act as a skill generator for an NPC. Generate a skill and include nothing more. You cannot use the following skills: " + usedSkills + ". KEEP YOUR RESPONSE UNDER TWO WORDS.";
+            skillPrompt = "Act as a skill generator for an NPC. Generate a skill and include nothing more. You cannot use the following skills: " + usedSkills + ".DO NOT PUT A PERIOD AT THE END. KEEP YOUR RESPONSE UNDER TWO WORDS.";
         }
 
         for (let i = 0; i < numWeapons; i++) {
@@ -280,7 +306,7 @@
               console.error("Error fetching response:", error);
             }
             usedWeapons += npc.weapons[i] + "";
-            weaponPrompt = "Act as a scifi weapon generator. Generate the name of a weapon that could be in someone's inventory such as a Laser Rifle. Include nothing more. You cannot use the following weapons: " + usedWeapons + ". KEEP YOUR RESPONSE UNDER FOUR WORDS.";
+            weaponPrompt = "Act as a scifi weapon generator. Generate the name of a weapon that could be in someone's inventory such as a Laser Rifle. Include nothing more. You cannot use the following weapons: " + usedWeapons + ".DO NOT PUT A PERIOD AT THE END. KEEP YOUR RESPONSE UNDER FOUR WORDS.";
         }
     }
 
@@ -294,7 +320,7 @@
     <nav class="flex flex-row justify-between items-center px-8 h-16">
         <div class="flex flex-row gap-8 items-center h-full">
             <div class="text-lg font-semibold text-gray-300">Joerpg</div>
-            <div class="w-px h-full bg-gray-800"></div>
+            <div class="min-w-px h-full bg-gray-800"></div>
             <div class="flex gap-4">
                 <div class="flex flex-row gap-4">
                     <button class="button-hybrid-rounded" aria-label="joe">Character 1</button>
@@ -308,7 +334,7 @@
 
         <div class="text-sm font-semibold text-gray-500">v0.1.0-alpha</div>
     </nav>
-    <div class="h-px w-full bg-gray-800"></div>
+    <div class="min-h-px w-full bg-gray-800"></div>
     <div class="flex flex-row h-[calc(100vh-65px)]">
         <div class="w-full p-6 flex gap-6 font-mono">
             <div class="min-w-sm flex flex-col gap-4">
@@ -324,48 +350,48 @@
                 <div class="flex gap-4">
                     <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.strength}</div>
-                        <div class="h-px bg-gray-700 w-full"></div>
+                        <div class="min-h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Strength</div>
                     </div>
                     <div class="flex flex-coll stat-label">
                         <div class="text-lg py-4 ">{npc.stamina}</div>
-                        <div class="h-px bg-gray-700 w-full"></div>
+                        <div class="min-h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Stamina</div>
                     </div>
                     <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.dexterity}</div>
-                        <div class="h-px bg-gray-700 w-full"></div>
+                        <div class="min-h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Dexterity</div>
                     </div>
                     <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.response}</div>
-                        <div class="h-px bg-gray-700 w-full"></div>
+                        <div class="min-h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Response</div>
                     </div>
                 </div>
                 <div class="flex gap-4">
                     <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.intuition}</div>
-                        <div class="h-px bg-gray-700 w-full"></div>
+                        <div class="min-h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Intuition</div>
                     </div>
                     <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.logic}</div>
-                        <div class="h-px bg-gray-700 w-full"></div>
+                        <div class="min-h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Logic</div>
                     </div>
                     <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.personality}</div>
-                        <div class="h-px bg-gray-700 w-full"></div>
+                        <div class="min-h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Personality</div>
                     </div>
                     <div class="flex flex-col stat-label">
                         <div class="text-lg py-4 ">{npc.leadership}</div>
-                        <div class="h-px bg-gray-700 w-full"></div>
+                        <div class="min-h-px bg-gray-700 w-full"></div>
                         <div class="text-[10px] py-2 text-gray-300">Leadership</div>
                     </div>
                 </div>
-                <div class="h-px w-full bg-gray-800"></div>
+                <div class="min-h-px w-full bg-gray-800"></div>
                 <div class="flex gap-4 w-full">
                     <div class="outline flex w-full">
                         <div class="text-[10px] text-gray-300 px-4 w-full p-2">Height</div>
@@ -402,12 +428,12 @@
                         <div class="text-[10px] text-gray-300 px-4 w-full text-center p-2">{npc.credits}</div>
                     </div>
                 </div>
-                <div class="label flex flex-col gap-2 h-full">
+                <div class="label flex flex-col gap-2 h-[calc(100%-528px)]">
                     <div class="flex flex-row justify-between">
                         <div class="">Skills</div>
                         <div class="">Lvl</div>
                     </div>
-                    <div class="h-px bg-gray-800"></div>
+                    <div class="min-h-px bg-gray-800"></div>
                     <div class="overflow-y-auto flex flex-col gap-2 h-full">
                         {#each npc.skills as skill, i}
                             <div class="w-full flex flex-row justify-between">
@@ -462,50 +488,52 @@
             </div>
 
         </div>
-        <div class="w-px bg-gray-800"></div>
+        <div class="min-w-px bg-gray-800"></div>
         <div class="flex flex-col justify-between min-w-[350px] max-w-[350px]">
             <div class="flex justify-evenly">
-                <button class="icon" aria-label="Youtube">
+                <button class="icon" aria-label="Reset" on:click={resetParameters}>
                     <i class="bi bi-arrow-clockwise"></i>
                 </button>
-                <div class="w-px bg-gray-800"></div>
-                <button class="icon" aria-label="Youtube">
+                <div class="min-w-px bg-gray-800"></div>
+                <button class="icon" aria-label="Shuffle" on:click={randomParameters}>
                     <i class="bi bi-shuffle"></i>
                 </button>
-                <div class="w-px bg-gray-800"></div>
-                <button class="icon" aria-label="Youtube">
+                <div class="min-w-px bg-gray-800"></div>
+                <button class="icon" aria-label="Copy">
                     <i class="bi bi-clipboard"></i>
                 </button>
-                <div class="w-px bg-gray-800"></div>
-                <button class="icon" aria-label="Youtube">
+                <div class="min-w-px bg-gray-800"></div>
+                <button class="icon" aria-label="Parameters">
                     <i class="bi bi-sliders2-vertical"></i>
                 </button>
-                <div class="w-px bg-gray-800"></div>
-                <button class="icon" aria-label="Youtube">
+                <div class="min-w-px bg-gray-800"></div>
+                <button class="icon" aria-label="Settings">
                     <i class="bi bi-gear"></i>
                 </button>
             </div>
-            <div class="h-px w-full bg-gray-800"></div>
+            <div class="min-h-px w-full bg-gray-800"></div>
             <div class="flex flex-col gap-4 m-4">
                 <div class="flex gap-4">
-                    <button on:click={modelDropdown}  class="button-hybrid w-full rounded-none text-center font-semibold font-mono flex justify-center">{currentModel}</button>
+                    <button on:click={modelDropdown}  class="button-hybrid w-full font-mono flex justify-center">{currentModel}</button>
 
-                    <button on:click={ejectModel} class="icon-hybrid rounded-none" aria-label="Youtube">
+                    <button on:click={ejectModel} class="icon-hybrid" aria-label="Youtube">
                         <i class="bi bi-eject"></i>
                     </button>
                 </div>
 
                 {#if showModelDropdown}
-                    <div class="hybrid flex flex-col">
+                    <div class="hybrid flex flex-col px-5 py-3 gap-3">
                         {#each modelNames as names}
-                            <button on:click={() => selectModel(names)} class="tag">{names}</button>
+                            <button on:click={() => selectModel(names)} class="dropdown-element">{names}</button>
+                            <div class="min-h-px bg-gray-800"></div>
                         {/each}
+                        <button on:click={ejectModel} class="dropdown-element">None</button>
                     </div>
                 {/if}
             </div>
 
-            <div class="h-px w-full bg-gray-800"></div>
-            <div class="h-full flex flex flex-col m-4 gap-5 overflow-y-auto">
+            <div class="min-h-px w-full bg-gray-800"></div>
+            <div class="h-full flex flex-col m-4 gap-5 overflow-y-auto">
                 <div class="flex gap-3 flex-wrap">
                     <button class={difficulty === 1 ? 'tag-toggled' : 'tag'}
                             on:click={() => setDifficulty(1)}>Easy
@@ -544,31 +572,29 @@
 
                 <div class="flex flex-col gap-4">
                     <div class="flex flex-row gap-3 font-mono">
-                        <div class="hybrid text-gray-300 h-10 text-xs w-[65%] flex items-center px-4">Equipment Amount</div>
+                        <div class="setting-label">Equipment Amount</div>
                         <input type="text" id="first_name" class="input placeholder-gray-500 text-center w-[35%] focus:outline-none" placeholder="#" bind:value={numInventory}>
                     </div>
                     <div class="flex flex-row gap-3 font-mono">
-                        <div class="hybrid text-gray-300 h-10 text-xs w-[65%] flex items-center px-4">Number of Skills</div>
+                        <div class="setting-label">Number of Skills</div>
                         <input type="text" id="first_name" class="input placeholder-gray-500 text-center w-[35%] focus:outline-none" placeholder="#" bind:value={numSkills}>
                     </div>
                     <div class="flex flex-row gap-3 font-mono">
-                        <div class="hybrid text-gray-300 h-10 text-xs w-[65%] flex items-center px-4">Weapons Amount</div>
+                        <div class="setting-label">Weapons Amount</div>
                         <input type="text" id="first_name" class="input placeholder-gray-500 text-center w-[35%] focus:outline-none" placeholder="#" bind:value={numWeapons}>
                     </div>
                     <div class="flex flex-row gap-3 font-mono">
-                        <div class="hybrid text-gray-300 h-10 text-xs w-[65%] flex items-center px-4">Description Word Count</div>
+                        <div class="setting-label">Description Word Count</div>
                         <input type="text" id="first_name" class="input placeholder-gray-500 text-center w-[35%] focus:outline-none" placeholder="#" bind:value={descriptionLength}>
                     </div>
                 </div>
             </div>
-            <div class="h-px w-full bg-gray-800"></div>
-            <div class="p-4 flex">
-                <div class="button-hybrid-dual w-full" >
-                    <i class="bi bi-hammer"></i>
-                    <div class="w-px bg-gray-700 h-full"></div>
-                    <button on:click={generate} class="text-center text-sm font-semibold w-full font-mono cursor-pointer">Generate</button>
-                </div>
-            </div>
+            <div class="min-h-px w-full bg-gray-800"></div>
+
+            <button on:click={generate} class="generate-button">
+                Generate
+                <i class="bi bi-hammer generate-button-icon"></i>
+            </button>
         </div>
     </div>
 </main>
