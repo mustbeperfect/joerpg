@@ -8,6 +8,7 @@
     let showModelDropdown = false;
     let noModel = false;
     let isGenerating = false;
+    let ollamaRunning = false;
 
     async function ollamaModels() {
         const ollamaModel = await ollama.list();
@@ -26,6 +27,15 @@
 
     function ejectModel() {
         currentModel = 'No Model Selected';
+    }
+
+    async function ollamaStatus() {
+        try {
+            await ollama.list();
+            ollamaRunning = true;
+        } catch (error) {
+            ollamaRunning = false;
+        }
     }
 
     //NPC Stats
@@ -58,6 +68,9 @@
         inventory: [] as string[],
         weapons: [] as string[],
     };
+
+    let characters: string[] = [];
+    characters = [npc.name];
 
     //World stats
     const raceTypes = ["Human", "Dralisite", "Vrusk", "Yazarian"];
@@ -143,6 +156,10 @@
             customRace = raceTypes[raceQueue];
             randomRace = false;
         }
+    }
+
+    function addCharacter() {
+        characters = [...characters, npc.name];
     }
 
     //Generator
@@ -234,6 +251,7 @@
         } catch (error) {
           console.error("Error fetching response:", error);
         }
+        characters = [npc.name];
 
         if (customDescription != "")
         {
@@ -312,6 +330,11 @@
 
     onMount(() => {
       ollamaModels();
+
+        ollamaStatus();
+        const interval = setInterval(ollamaStatus, 5000);
+
+        return () => clearInterval(interval);
     })
 
 </script>
@@ -321,18 +344,35 @@
         <div class="flex flex-row gap-8 items-center h-full">
             <div class="text-lg font-semibold text-gray-300">Joerpg</div>
             <div class="min-w-px h-full bg-gray-800"></div>
-            <div class="flex gap-4">
+            <div class="flex gap-4 overflow-x-auto w-full">
                 <div class="flex flex-row gap-4">
-                    <button class="button-hybrid-rounded" aria-label="joe">Character 1</button>
+                    {#each characters as character}
+                        <button class="button-hybrid-rounded" aria-label="joe">{character}</button>
+                    {/each}
                 </div>
-                <button class="icon-hybrid-rounded" aria-label="Youtube">
+
+                <button class="icon-hybrid-rounded" aria-label="Youtube" on:click={addCharacter}>
                     <i class="bi bi-plus-lg"></i>
                 </button>
             </div>
 
         </div>
+        <div class="flex gap-8 items-center justify-center">
+            {#if ollamaRunning}
+                <div class="status-green">
+                    <div class="min-h-[10px] min-w-[10px] bg-green-400 rounded-full"></div>
+                    <div>Ollama Running</div>
+                </div>
+            {:else}
+                <div class="status-red">
+                    <div class="min-h-[10px] min-w-[10px] bg-red-400 rounded-full"></div>
+                    <div>Ollama Not Running</div>
+                </div>
+            {/if}
 
-        <div class="text-sm font-semibold text-gray-500">v0.1.0-alpha</div>
+            <div class="text-sm font-semibold text-gray-500">v0.1.0-alpha</div>
+        </div>
+
     </nav>
     <div class="min-h-px w-full bg-gray-800"></div>
     <div class="flex flex-row h-[calc(100vh-65px)]">
